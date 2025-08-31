@@ -16,6 +16,9 @@ export async function handler(event) {
       body: JSON.stringify({ id: session.id }),
     };
   } catch (err) {
-    return { statusCode: 500, body: err.message };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message }),
+    };
   }
 }
