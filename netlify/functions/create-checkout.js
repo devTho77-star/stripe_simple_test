@@ -5,7 +5,7 @@ export async function handler(event) {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: [{ price: "prod_Sy9WIESjj94mNj", quantity: 1 }],
+      line_items: [{ price: "price_1S2DDY3pBglTeA0mqG1gYIkD", quantity: 1 }],
       mode: "subscription",
       success_url: `${process.env.URL}/success`,
       cancel_url: `${process.env.URL}/cancel`,
