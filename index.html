@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netlify + Stripe Demo</title>
+</head>
+<body>
+  <h1>Netlify + Stripe Demo</h1>
+  <button id="checkout">Subscribe</button>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    document.getElementById("checkout").addEventListener("click", async () => {
+      const res = await fetch("/.netlify/functions/create-checkout", { method: "POST" });
+      const data = await res.json();
+      const stripe = Stripe("pk_test_51S1OAH3pBglTeA0mBud6ByC3NIv6nMTrQ4ITBQ1h1GDTBX5ygMuoeCVeBZdF1Jy5wmQq819Xbd4kKRjZ3aJJcDfu00dGiF5MC6");
+      stripe.redirectToCheckout({ sessionId: data.id });
+    });
+  </script>
+</body>
+</html>
